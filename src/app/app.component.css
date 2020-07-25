@@ -1,0 +1,16 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+table {
+    width: 50%;
+}
+
+.example-label{
+  margin-left: 70px;
+}

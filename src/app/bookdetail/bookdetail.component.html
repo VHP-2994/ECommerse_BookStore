@@ -1,0 +1,42 @@
+<mat-table [dataSource]="books" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="book_id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let b"> {{b.book_id}} </mat-cell>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="book_title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let b"> {{b.book_title}} </mat-cell>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="book_author">
+      <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
+      <mat-cell *matCellDef="let b"> {{b.book_author}} </mat-cell>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="book_price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let b"> {{b.book_price}} </mat-cell>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let b"> <button md-raised-button [routerLink]="['/updateDetails',b.book_id]" routerLinkActive="active" >Edit</button> </mat-cell>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let b"> <button (click)="deleteItem(b.book_id)" md-raised-button>Delete</button> </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <router-outlet></router-outlet>

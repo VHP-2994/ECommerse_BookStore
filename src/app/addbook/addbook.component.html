@@ -1,0 +1,22 @@
+<div class="col-md-6">
+    <h2 class="text-center">Add Employee</h2>
+    <form>
+      <div class="form-group">
+        <label for="book_title">Title</label>
+        <input type="name" [(ngModel)]="book.book_title" placeholder="Name" name="name" class="form-control" id="name">
+      </div>
+    
+      <div class="form-group">
+        <label for="book_author">Author</label>
+        <input [(ngModel)]="book.book_author" placeholder="Designation" name="designation" class="form-control" id="designation">
+      </div>
+    
+      <div class="form-group">
+        <label for="book_price">price</label>
+        <input [(ngModel)]="book.book_price" placeholder="Employee Id" name="Employee Id" class="form-control" id="employeeid">
+      </div>
+    
+      <button type="button" class="btn btn-success" (click)="postBook()">Create</button>
+    </form>
+    </div>
+        

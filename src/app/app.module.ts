@@ -19,11 +19,14 @@ import { BookdetailComponent } from './bookdetail/bookdetail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { UpdatebookComponent } from './updatebook/updatebook.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { AddwishlistComponent } from './addwishlist/addwishlist.component';
 
 const routes: Routes = [
   {path: 'add-book', component: AddbookComponent},
   {path:'bookDetails', component: BookdetailComponent},
-  {path: 'updateDetails/:book_id', component: UpdatebookComponent}
+  {path: 'updateDetails/:book_id', component: UpdatebookComponent},
+  {path: 'wishlist', component: WishlistComponent}
 ];
 
 @NgModule({
@@ -31,7 +34,9 @@ const routes: Routes = [
     AppComponent,
     AddbookComponent,
     BookdetailComponent,
-    UpdatebookComponent
+    UpdatebookComponent,
+    WishlistComponent,
+    AddwishlistComponent
   ],
   imports: [
     BrowserModule,

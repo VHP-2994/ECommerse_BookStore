@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/Book';
-import { BookService} from 'src/app/book.service'
+import { Book } from '../Book';
+import { BookService} from '../book.service'
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -30,8 +30,12 @@ export class UpdatebookComponent implements OnInit {
     this.bookService.putBook(this.id,this.book)
     .subscribe(response => {
       console.log(this.book);
-      this.book = new Book();
+     // this.book = new Book();
+      this.gotoList();
     })
   }
 
+  gotoList() {
+    this.router.navigate(['/bookDetails']);
+  }
 }

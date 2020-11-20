@@ -1,12 +1,19 @@
 <p>
   <mat-toolbar color="primary">
-  <span>My App</span>
+  <span>BooKart</span>
   <button mat-icon-button class="example-label"  aria-label="Example icon-button with menu icon" routerLink="/bookDetails" routerLinkActive="active">
     Book Collection
    </button>
   <button mat-icon-button class="example-label"  aria-label="Example icon-button with menu icon" routerLink="/add-book" routerLinkActive="active">
    Add Book
   </button>
+  <button class="wish" [routerLink]="['/wishlist']" routerLinkActive="active"><span class="material-icons">
+    favorite
+    </span></button>
+
+   <button class="cart"><span class="material-icons">
+      shopping_cart
+      </span></button>
 </mat-toolbar>
 </p>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/Book';
-import { BookService} from 'src/app/book.service'
+import { Book } from '../Book';
+import { BookService} from '../book.service';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-bookdetail',
@@ -9,17 +10,30 @@ import { BookService} from 'src/app/book.service'
 })
 export class BookdetailComponent implements OnInit {
 
-  books : Book[];
-  book: any;
-  constructor(private bookService: BookService) {
-  }
- 
+  books: Book[];
+  book : Book;
+  bookswish: Book[];
+  bookwish: Book;
+   
+  constructor(
+    private bookService: BookService
+  ) { }
+
+  
   ngOnInit() {
     this.bookService.findAll().subscribe(data => {
+      console.log(data);
       this.books = data;
-    });
-
+    })
   }
+
+  private getBooks(){
+    this.bookService.findAll().subscribe(data =>{
+      console.log(data);
+      this.books =data;
+    })
+  }
+  
 
   deleteItem(id){
     this.bookService.deleteBook(id)
@@ -31,8 +45,6 @@ export class BookdetailComponent implements OnInit {
       error => console.log(error);
     })
   }
-
- 
 
   displayedColumns: String[] = ['book_id','book_title','book_author','book_price','actions','delete'];
 

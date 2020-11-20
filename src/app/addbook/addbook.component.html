@@ -1,22 +1,23 @@
+<div><h3 style="text-align: center;">Add Employee</h3></div>
 <div class="col-md-6">
-    <h2 class="text-center">Add Employee</h2>
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="book_title">Title</label>
-        <input type="name" [(ngModel)]="book.book_title" placeholder="Name" name="name" class="form-control" id="name">
+        <label for="book_title" style="margin-left: 40%;">Title</label>
+        <input type="name" [(ngModel)]="book.book_title" name="name" class="form-control" id="name">
       </div>
-    
+      <br>    
       <div class="form-group">
-        <label for="book_author">Author</label>
-        <input [(ngModel)]="book.book_author" placeholder="Designation" name="designation" class="form-control" id="designation">
+        <label for="book_author" style="margin-left: 40%;">Author</label>
+        <input [(ngModel)]="book.book_author" name="designation" class="form-control" id="designation">
       </div>
-    
+      <br>
       <div class="form-group">
-        <label for="book_price">price</label>
-        <input [(ngModel)]="book.book_price" placeholder="Employee Id" name="Employee Id" class="form-control" id="employeeid">
+        <label for="book_price" style="margin-left: 40%;">price</label>
+        <input [(ngModel)]="book.book_price" name="Employee Id" class="form-control" id="employeeid">
       </div>
-    
-      <button type="button" class="btn btn-success" (click)="postBook()">Create</button>
+      <br>
+      <button style="margin-left: 40%;" type="submit" class="btn btn-success">Create</button>
     </form>
     </div>
+    <div><strong>{{bookadded}}</strong></div>
         

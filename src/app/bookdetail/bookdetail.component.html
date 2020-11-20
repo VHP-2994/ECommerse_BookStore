@@ -1,42 +1,20 @@
-<mat-table [dataSource]="books" class="mat-elevation-z8">
-    <!-- Position Column -->
-    <ng-container matColumnDef="book_id">
-      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-      <mat-cell *matCellDef="let b"> {{b.book_id}} </mat-cell>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="book_title">
-      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-      <mat-cell *matCellDef="let b"> {{b.book_title}} </mat-cell>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="book_author">
-      <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
-      <mat-cell *matCellDef="let b"> {{b.book_author}} </mat-cell>
-    </ng-container>
-  
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="book_price">
-      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let b"> {{b.book_price}} </mat-cell>
-    </ng-container>
-  
-  
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
-      <mat-cell *matCellDef="let b"> <button md-raised-button [routerLink]="['/updateDetails',b.book_id]" routerLinkActive="active" >Edit</button> </mat-cell>
-    </ng-container>
-  
-    
-    <ng-container matColumnDef="delete">
-      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
-      <mat-cell *matCellDef="let b"> <button (click)="deleteItem(b.book_id)" md-raised-button>Delete</button> </mat-cell>
-    </ng-container>
-  
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-
-  <router-outlet></router-outlet>
+<mat-card class="example-card" *ngFor="let b of books">
+  <mat-card-header>
+    <mat-card-title>Title: {{b.book_title}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Author : {{b.book_author}}</p>
+    <p>Price : {{b.book_price}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="material-icons" (click)="addwishlist.addtoWishList(b.book_id)"><span>
+      favorite_border</span></button>
+      <app-addwishlist #addwishlist></app-addwishlist>
+    <button class="material-icons" (click)="deleteItem(b.book_id)">
+        delete_outline</button>
+    <button class="material-icons" [routerLink]="['/updateDetails',b.book_id]" routerLinkActive="active">
+        edit
+    </button>
+    <button mat-button>Add To Cart</button>
+  </mat-card-actions>
+</mat-card>

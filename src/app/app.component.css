@@ -14,3 +14,15 @@ table {
 .example-label{
   margin-left: 70px;
 }
+
+.wish{
+  margin-left: 800px;
+  border: none;
+  background-color: darkslateblue;
+}
+
+.cart{
+  margin-left: 10px;
+  border: none;
+  background-color: darkslateblue;
+}

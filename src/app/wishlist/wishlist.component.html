@@ -1,0 +1,13 @@
+<mat-card class="example-card" *ngFor="let w of wishlist">
+  <mat-card-header>
+    <mat-card-title>Title: {{w.wish_bookname}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Author : {{w.wish_bookauthor}}</p>
+    <p>Price : {{w.wish_bookprice}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="material-icons" (click)="removeWishbook(w.wish_id)">
+      delete_outline</button>
+  </mat-card-actions>
+</mat-card>

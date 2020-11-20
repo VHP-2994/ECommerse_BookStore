@@ -1,0 +1,16 @@
+.example-card{
+    width: 250px;
+    float: left;
+    margin: 10px;
+    margin-top: 70px;
+}
+
+.fa-heart{
+    size: 2px;
+}
+
+.material-icons{
+    border: none;
+    background-color: white;
+}
+

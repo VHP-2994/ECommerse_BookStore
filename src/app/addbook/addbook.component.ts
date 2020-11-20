@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/Book';
-import { BookService} from 'src/app/book.service'
+import { Book } from '../Book';
+import { BookService} from '../book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addbook',
@@ -9,16 +10,34 @@ import { BookService} from 'src/app/book.service'
 })
 export class AddbookComponent implements OnInit {
   book: Book = new Book();
-  constructor(private bookService: BookService) { }
+  submitted = false;
+  bookadded : String;
+  constructor(private bookService: BookService,private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  
-  postBook(){
-   this.bookService.postBook(this.book).subscribe(data => {
-     console.log("Book created Successfully");
-   },
-   error => console.log(error))
+  save() {
+    this.bookadded = null;
+    this.bookService.postBook(this.book)
+      .subscribe(data => {
+        this.bookadded = "Book Added Successfully";
+        console.log(data);
+        this.gotoList();
+      }, 
+      error => console.log(error));
+    //this.book = new Book();
+    this.bookService.findAll();
+    //this.gotoList();
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log(this.book);
+    this.save();    
+  }
+
+  gotoList() {
+    this.router.navigate(['/bookDetails']);
   }
 }

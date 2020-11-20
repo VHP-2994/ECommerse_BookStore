@@ -9,27 +9,29 @@ import { Book } from './book';
 export class BookService {
   private bookUrl: string;
   constructor(private http: HttpClient) { 
-    this.bookUrl = 'http://localhost:8082/books';
+    //this.bookUrl = 'http://localhost:8082/books';
   }
 
   public findAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.bookUrl);
+    console.log("test call");
+    return this.http.get<Book[]>('http://localhost:8082/books');
+    //return this.http.get<Book[]>(this.bookUrl);
   }
 
   public findById(book_id: number): Observable<Book>{
-    return this.http.get<Book>(`http://localhost:8082/book/${book_id}`);
+    return this.http.get<Book>(`http://localhost:8082/books/book/${book_id}`);
   }
 
   public deleteBook(book_id: number): Observable<any>{
      return this.http.delete<any>(`http://localhost:8082/removeBook/${book_id}`);
   }
 
-  public postBook(Book: Object): Observable<Book>{
-    return this.http.post<Book>(`http://localhost:8082/book`, Book);
+   public postBook(book: Book): Observable<Object>{
+    return this.http.post(`http://localhost:8082/addbook`, book);
   }
 
   public putBook(book_id: number, Book: Object): Observable<Book>{
-    return this.http.put<Book>(`http://localhost:8082/book/${book_id}`, Book);
+    return this.http.put<Book>(`http://localhost:8082/addbook/${book_id}`, Book);
   }
  
 }

@@ -15,8 +15,16 @@ export class AddwishlistComponent implements OnInit {
   book : Book;
   submitted = false;
   bookadded : String;
+  count: number;
+  
+  badgeCount: number;
+
+  public icon ='favorite_border';
+  
   constructor(private bookService: BookService,private router: Router,
-    private wishlistService: WishlistService) { }
+    private wishlistService: WishlistService) { 
+      this.badgeCount = 5;
+    }
 
   ngOnInit(): void {
   }
@@ -39,12 +47,34 @@ export class AddwishlistComponent implements OnInit {
     this.bookService.findAll();
   }*/
 
-  addtoWishList(id){
+  addtoWishList(id,b){
+    b.isSelected = true;
+    console.log(b.isSelected);
+
+    if(this.icon === 'favorite_border'){
+      this.icon = 'favorite';
+    }
+    else{
+      this.icon = 'favorite_border';
+    }
      this.wishlistService.postBook(id).subscribe(data =>{
+       this.count = this.count+1;
        console.log("wishlist book added");
        console.log(data);
-       this.gotoList();
+       //this.gotoList();
      })
+
+     
+  }
+
+  
+  incrementCount() {
+    this.badgeCount= this.badgeCount++;
+    console.log(this.badgeCount);
+  }
+
+  get returnIncrement(){
+    return this.badgeCount;
   }
 
   gotoList() {

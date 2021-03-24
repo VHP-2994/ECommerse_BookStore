@@ -1,0 +1,21 @@
+<div><h3 style="text-align: center;">Edit User</h3></div>
+<div class="col-md-6">
+    <form>
+      <div class="form-group">
+        <label for="firstName" style="margin-left: 40%;">FirstName</label>
+        <input type="name" [(ngModel)]="user.firstName" name="name" class="form-control" id="name">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="lastName" style="margin-left: 40%;">LastName</label>
+        <input [(ngModel)]="user.lastName" name="designation" class="form-control" id="designation">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="username" style="margin-left: 40%;">Username</label>
+        <input [(ngModel)]="user.username" name="Employee Id" class="form-control" id="employeeid">
+      </div>
+      <br>
+      <button style="margin-left: 40%;" type="button" class="btn btn-success" (click)="updateUser()">Update</button>
+    </form>
+    </div>

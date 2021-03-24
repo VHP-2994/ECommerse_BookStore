@@ -1,0 +1,90 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+table {
+    width: 50%;
+}
+
+.example-label{
+  margin-left: 70px;
+  outline: none;
+}
+.example-home{
+  margin-left: 20px;
+  outline: none;
+}
+
+.login{
+  margin-left: 50%;
+}
+
+.logout{
+  margin-left: 50%;
+}
+
+.example-collction{
+  margin-left: 20px;
+  outline: none;
+}
+
+.mat-sidenav {
+  width: 200px;
+  padding:15px;
+}
+
+.example-icon{
+  outline: none;
+}
+
+.wish{
+  margin-left: 5%;
+  border: none;
+  background-color: #673ab7;
+  color: white;
+  outline: none;
+}
+
+.login-nav{
+  margin-left: 27px;
+}
+
+
+::ng-deep .mat-menu-panel {width: 50000%!important; padding: 0 10px!important;} 
+
+.mat-menu-item{
+  width: 200px;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+}
+
+.cart{
+  margin-left: 10px;
+  border: none;
+  background-color: #673ab7;
+  color: white;
+  outline: none;
+}
+
+.side-label{
+  margin-left: 10px;
+  outline: none;
+}
+
+.book-details{
+  display:inline
+}
+
+.menu-label{
+  outline: none;
+}
+
+.login{
+  margin-left: 900px;
+}

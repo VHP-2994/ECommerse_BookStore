@@ -1,0 +1,71 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav mode="over" #sidenav>
+    <mat-list>
+      <mat-list-item><span class="material-icons">
+      account_circle
+      </span> Hello {{userfirstname}}</mat-list-item>
+    
+      <mat-divider></mat-divider>
+    
+      <mat-list-item><button mat-icon-button class="side-label"  aria-label="Example icon-button with menu icon" routerLink="/bookDetails" routerLinkActive="active">
+      Book Collection
+     </button></mat-list-item>
+     <mat-divider></mat-divider>
+     <mat-list-item><button mat-icon-button class="side-label"  aria-label="Example icon-button with menu icon" routerLink="/add-book" routerLinkActive="active">
+     Add Book
+    </button></mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><button mat-icon-button class="side-label" [routerLink]="['/wishlist']" routerLinkActive="active">Wishlist</button></mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><button mat-icon-button class="side-label" [routerLink]="['/cart']" routerLinkActive="active">My Cart</button></mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+  <button mat-icon-button class="login-nav" aria-label="Example icon-button with menu icon" *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" routerLinkActive="active">Login</button>
+  <button mat-icon-button class="login-nav" aria-label="Example icon-button with menu icon" *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" routerLinkActive="active">Logout</button>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="menu-label" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      BooKart
+      <button mat-icon-button class="example-home" aria-label="Example icon-button with menu icon" routerLink="" routerLinkActive="active">
+       Home
+       </button>
+      <button mat-icon-button class="example-collction" aria-label="Example icon-button with menu icon" routerLink="/bookDetails" routerLinkActive="active">
+        Book Collection
+       </button>
+      <button mat-icon-button class="example-label" *ngIf="loginService.isUserLoggedIn()" aria-label="Example icon-button with menu icon" routerLink="/add-book" routerLinkActive="active">
+       Add Book
+      </button>
+
+      <button mat-icon-button class="login" aria-label="Example icon-button with menu icon" *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" routerLinkActive="active">Login</button>
+          <button mat-icon-button class="logout" aria-label="Example icon-button with menu icon" *ngIf="loginService.isUserLoggedIn()" [matMenuTriggerFor]="belowMenu" routerLinkActive="active"> Hello {{userfirstname}}</button>
+          <mat-menu class="menu" #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item [routerLink]="['/account']" routerLinkActive="active">My Account</button>
+            <mat-divider></mat-divider>
+            <!-- <button mat-menu-item >Read For Free</button>
+            <mat-divider></mat-divider> -->
+            <button mat-menu-item  *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" >Logout</button>
+            
+          </mat-menu>
+      <button class="wish" *ngIf="loginService.isUserLoggedIn()" [routerLink]="['/wishlist']" routerLinkActive="active">
+        <mat-icon>
+        bookmark_border
+      </mat-icon>
+      <span class="badge" *ngIf="wishlistcount> 0">{{wishlistcount}}</span>
+      <app-addwishlist #wish></app-addwishlist>
+      </button> 
+        
+       <button class="cart" [matBadge]="badgeCount" *ngIf="loginService.isUserLoggedIn()" [routerLink]="['/cart']" routerLinkActive="active"><span class="material-icons">
+        shopping_cart
+        </span>
+       </button>
+       
+       Message: {{message}}
+        <app-bookdetail (messageEvent)="receiveMessage($event)"></app-bookdetail>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

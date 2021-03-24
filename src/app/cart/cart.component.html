@@ -1,0 +1,20 @@
+<h3>Subtotal : {{subtotal}}</h3>
+<mat-card class="example-card" *ngFor="let c of cart">
+    <mat-card-header>
+      <mat-card-title> <img src="data:image/png;base64,{{c.cart_bookimage}}" class="img-responsive" height="150px"
+        width="200px" alt="Image"> </mat-card-title> 
+
+      
+    </mat-card-header>
+    <mat-card-content>
+      <p>Title: {{c.cart_bookname}}</p>
+      <p>Author : {{c.cart_bookauthor}}</p>
+      <p>Price : {{c.cart_bookprice}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="material-icons" (click)="removeFromCart(c.cart_id)">
+        delete_outline</button>
+    </mat-card-actions>
+  </mat-card>
+  
+  

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Book } from '../Book';
 import { BookService} from '../book.service';
 import { Observable } from "rxjs";
+import { AddtocartComponent } from '../addtocart/addtocart.component';
 
 @Component({
   selector: 'app-bookdetail',
@@ -14,6 +15,10 @@ export class BookdetailComponent implements OnInit {
   book : Book;
   bookswish: Book[];
   bookwish: Book;
+  msg : string ="Hello";
+  message : string ="hello child"
+
+  @Output() messageEvent = new EventEmitter<string>();
    
   constructor(
     private bookService: BookService
@@ -24,6 +29,7 @@ export class BookdetailComponent implements OnInit {
     this.bookService.findAll().subscribe(data => {
       console.log(data);
       this.books = data;
+     
     })
   }
 
@@ -45,7 +51,10 @@ export class BookdetailComponent implements OnInit {
       error => console.log(error);
     })
   }
-
+  sendMessage(){
+    this.messageEvent.emit(this.message);
+    console.log(this.message);
+  }
   displayedColumns: String[] = ['book_id','book_title','book_author','book_price','actions','delete'];
 
 }

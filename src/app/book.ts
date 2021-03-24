@@ -3,4 +3,5 @@ export class Book {
     book_title: String;
     book_author: String;
     book_price: number;
+    bookimage: File;
 }

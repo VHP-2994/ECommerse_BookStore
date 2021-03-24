@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-12">
+      <ul class="list-inline rating-list" 
+          *ngFor="let star of stars" style="display: inline-block" >
+            <li (click)="countStar(star)"
+                [ngClass]="{'selected': (star <= selectedValue)}">
+              <i class="fa fa-star"></i>
+            </li> 
+      </ul>
+  </div>
+</div>
+<form (ngSubmit)="onSubmit()" class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label for="book_title">Leave a comment</mat-label>
+    <textarea matInput [(ngModel)]="review.review_comment" name="name" class="form-control"  placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+</form>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button type="submit" (click)="saveReview()">Submit</button>
+</div>

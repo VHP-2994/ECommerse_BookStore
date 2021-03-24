@@ -5,4 +5,5 @@ export class Wishlist {
     wish_bookname: String;
     wish_bookauthor:String;
     wish_bookprice: number;
+    wish_bookimage: File;
 }

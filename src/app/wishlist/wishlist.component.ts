@@ -13,7 +13,7 @@ export class WishlistComponent implements OnInit {
 
   books: Book[];
   wishlist : Wishlist[];
-
+  wishcount : number;
   constructor(private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
@@ -21,6 +21,8 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.findAll().subscribe(data => {
       console.log(data);
       this.wishlist = data;
+      this.wishcount =this.wishlist.length;
+      console.log(this.wishcount)
     })
   
   }

@@ -1,0 +1,31 @@
+.hometext{
+    margin-left: 15%;
+    margin-top: 7%;
+}
+
+h1 {
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+ h1 {
+    line-height: 0.2;
+  }
+
+.hometext1{
+    margin-left: 15%;
+    margin-top: -0%;
+  }
+  .hometext2{
+    margin-left: 15%;
+    margin-top: -2%;
+  }
+
+  h3{
+    margin-left: 15%;
+    margin-top: -2%;
+      color: gray;
+  }

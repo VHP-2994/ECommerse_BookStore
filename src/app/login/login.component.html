@@ -1,0 +1,23 @@
+<div fxLayout="row" >
+    <mat-card class="example-login" style="text-align: center;">
+    <mat-card-header>
+      <mat-card-title class="login">Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <input [type]="hide ? 'password' : 'text'" matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+      </mat-form-field>
+    </mat-card-content>
+    <a routerLink="/signup" style="text-decoration: underline;">create account</a>
+    <mat-card-actions align="center">
+      <button mat-raised-button (click)="checkLogin()" color="primary">Login</button>
+    </mat-card-actions>
+    </mat-card>
+    </div>

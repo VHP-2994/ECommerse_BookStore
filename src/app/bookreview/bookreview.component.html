@@ -1,0 +1,58 @@
+<mat-card class="example-card">
+      
+    <mat-card-content>
+      <h2>{{book.book_title}} by {{book.book_author}}</h2>
+      <img src="data:image/png;base64,{{book.bookimage}}" class="img-responsive" height="150px"
+      width="200px" alt="Image" style="margin-left: 80px;margin-bottom: 30px;">  
+      <h2 style="color: red;">Rs.{{book.book_price}}</h2>
+      <!--Total Star Rating-->
+      <!-- <div class="row">
+        <div class="col-sm-12">
+            <ul class="list-inline rating-list" 
+                 style="display: inline-block" >
+                  <li
+                      [ngClass]="{'selected': (total)}">
+                    <i class="fa fa-star"></i>
+                  </li> 
+            </ul>
+        </div>
+      </div> -->
+    </mat-card-content>
+    <button mat-raised-button reviewbutton (click)="openDialog()" style="margin-bottom: 15px;">Write Review</button>
+    <mat-card-actions>
+      <!-- <button class="mdc-icon-button material-icons" style.color="b.isSelected ? '#3DA2DA' : 'FFFFFF'" (click)="addwishlist.addtoWishList(b.book_id,b)"><span>
+        grade</span></button> -->
+        <button class="mdc-icon-button material-icons" (click)="addwishlist.addtoWishList(book.book_id,book)" style="outline: none; border: none;"><span>
+            {{addwishlist.icon}}</span></button>
+          <app-addwishlist #addwishlist></app-addwishlist>
+        <button mat-button (click)="addtocart.addToCart(book.book_id,book)" style="background-color:#af9816">Add To Cart</button>
+        <app-addtocart #addtocart></app-addtocart>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <h2>Customers reviews</h2>
+  </mat-card>
+  <mat-card class="example-card" *ngFor="let review of reviews">
+    <mat-card-header> 
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-list-item><span class="material-icons">
+          account_circle
+          </span>{{review.reviewer_fname}}</mat-list-item>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+            <ul class="list-inline rating-list" 
+                *ngFor="let star of stars" style="display: inline-block" >
+                  <li (click)="countStar(star)"
+                      [ngClass]="{'selected': (star <= review.review_star)}">
+                    <i class="fa fa-star"></i>
+                  </li> 
+            </ul>
+        </div>
+      </div>
+      <p>{{review.review_comment}}</p>
+    </mat-card-content>
+  </mat-card>
+

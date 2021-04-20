@@ -1,5 +1,14 @@
-<h3>Subtotal : {{subtotal}}</h3>
-<mat-card class="example-card" *ngFor="let c of cart">
+<div style="margin-left: 20px;margin-right: 20px;margin-top: 20px;"*ngIf="!itemAvailable">
+  <mat-card style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
+    <h3><b>Shopping Cart is Empty</b></h3>
+    <button mat-stroked-button color="warn" [routerLink]="['/wishlist']" routerLinkActive="active"><b>ADD ITEMS FROM WISHLIST</b></button>
+  </mat-card>
+</div>
+
+<div *ngIf="itemAvailable">
+  <h3 style="display: inline;margin-left: 20px;"><strong>Item Count {{cartCount}}</strong></h3>
+  <h3 *ngIf="itemAvailable" style="display: inline;margin-left: 80%;"><strong>Total : {{subtotal}}</strong></h3>
+<mat-card class="example-card" *ngFor="let c of cart" style="margin-left: 25px;margin-right: 25px;margin-bottom: 15px;">
     <mat-card-header>
       <mat-card-title> <img src="data:image/png;base64,{{c.cart_bookimage}}" class="img-responsive" height="150px"
         width="200px" alt="Image"> </mat-card-title> 
@@ -12,9 +21,23 @@
       <p>Price : {{c.cart_bookprice}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button class="material-icons" (click)="removeFromCart(c.cart_id)">
-        delete_outline</button>
+      <!-- <button class="material-icons" (click)="removeFromCart(c.cart_id)">
+        delete_outline</button> -->
+        <button class="del" (click)="removeFromCart(c.cart_id)">
+        <span class="material-icons">
+          delete
+          </span></button>
+          <!-- <button class="addremove" type="submit">
+          <span class="material-icons">
+            remove
+            </span></button>
+          <input class="addremove" type="text" name="search">{{cartCount}}
+          <button class="addremove" type="submit"><span class="material-icons">
+            add
+            </span></button> -->
     </mat-card-actions>
+    
   </mat-card>
+</div>
   
   

@@ -1,22 +1,32 @@
-<div><h3 style="text-align: center;">Update Employee</h3></div>
+<mat-card style="margin-top: 20px;margin-bottom: 20px;text-align: center;width: 50%;margin-left: 25%;" class="example-card">
+<div><h3 style="text-align: center;"><b>Update Book Details</b></h3></div>
 <div class="col-md-6">
     <form>
       <div class="form-group">
-        <label for="book_title" style="margin-left: 40%;">Title</label>
-        <input type="name" [(ngModel)]="book.book_title" name="name" class="form-control" id="name">
+        <label for="book_title" style="margin-left: 95%;"><strong>TITLE</strong></label>
+        <input type="name" style="margin-left: 8%;width: 200%;" [(ngModel)]="book.book_title" name="name" class="form-control" id="name">
       </div>
       <br>
       <div class="form-group">
-        <label for="book_author" style="margin-left: 40%;">Author</label>
-        <input [(ngModel)]="book.book_author" name="designation" class="form-control" id="designation">
+        <label for="book_author" style="margin-left: 95%;"><strong>AUTHOR</strong></label>
+        <input style="margin-left: 8%;width: 200%;" [(ngModel)]="book.book_author" name="designation" class="form-control" id="designation">
       </div>
       <br>
       <div class="form-group">
-        <label for="book_price" style="margin-left: 40%;">price</label>
-        <input [(ngModel)]="book.book_price" name="Employee Id" class="form-control" id="employeeid">
+        <label for="book_price" style="margin-left: 95%;"><strong>PRICE</strong></label>
+        <input style="margin-left: 8%;width: 200%;" [(ngModel)]="book.book_price" name="Employee Id" class="form-control" id="employeeid">
       </div>
       <br>
-      <button style="margin-left: 40%;" type="button" class="btn btn-success" (click)="updateItem()">Update</button>
+      <!-- <mat-card-actions style="margin-left: 25%;margin-right: 25%;">
+      <button   mat-raised-button (click)="updateItem()">Update</button>
+      <button   mat-raised-button [routerLink]="['/bookDetails']" routerLinkActive="active">Cancel</button>
+    </mat-card-actions> -->
+
+    <mat-card-actions>
+      <button type="button" class="btn btn-success" (click)="updateItem()" style="margin-right: 10%;">UPDATE</button>
+      <button type="button" class="btn btn-danger" [routerLink]="['/bookDetails']" routerLinkActive="active">CANCEL</button>
+    </mat-card-actions>
     </form>
     </div>
+  </mat-card>
         

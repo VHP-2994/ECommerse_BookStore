@@ -12,7 +12,7 @@
     <!-- <button class="mdc-icon-button material-icons" style.color="b.isSelected ? '#3DA2DA' : 'FFFFFF'" (click)="addwishlist.addtoWishList(b.book_id,b)"><span>
       grade</span></button> -->
 
-      <button class="mdc-icon-button material-icons" (click)="addwishlist.addtoWishList(b.book_id,b);addwishlist.incrementCount()"><span class="material-icons">
+      <button class="mdc-icon-button material-icons" (click)="addwishlist.addtoWishList(b.book_id,b);wishSuccessMessage()"><span class="material-icons">
         bookmark_border
         </span></button>
       <app-addwishlist #addwishlist></app-addwishlist>
@@ -21,11 +21,23 @@
     <button class="material-icons" [routerLink]="['/updateDetails',b.book_id]" routerLinkActive="active">
         edit
     </button>
-    <button mat-button (click)="addtocart.addToCart(b.book_id,b)">Add To Cart</button>
-
-    <button mat-button (click)="sendMessage()">incrementbadge3</button>
+    <button mat-button (click)="addtocart.addToCart(b.book_id,b);changeSuccessMessage()">Add To Cart</button>
     <app-addtocart #addtocart></app-addtocart>
   </mat-card-actions>
-
-  <h2>{{addwishlist.cart_addedmsg}}</h2>
 </mat-card>
+
+<ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''">{{ successMessage }}
+</ngb-alert>
+
+<ngb-alert #selfClosingAlert *ngIf="wishsuccess" type="success" (closed)="wishsuccess = ''">{{ wishsuccess }}
+</ngb-alert>
+
+
+
+<!-- <p *ngIf="showMyMessage">
+  <ngb-alert class="alert" [type]="'success'" (closed)="close(alert)">Book Added to Cart Successfully!!</ngb-alert>
+  
+</p>
+<p *ngIf="wishMessage">
+  <ngb-alert class="alert" [type]="'success'" (closed)="close(alert)">Book Added to Wishlist Successfully!!</ngb-alert>
+</p> -->

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Book } from '../Book';
 import { Review } from '../Review';
 import { BookService} from '../book.service';
@@ -7,7 +7,9 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { ReviewdialogComponent } from '../reviewdialog/reviewdialog.component';
 import { AuthenticationService } from '../authentication.service';
 import { User } from '../User';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bookreview',
@@ -24,6 +26,14 @@ userfirstname: String;
   currentUser: User;
   currentUserSubscription: Subscription;
   total:number;
+
+  @ViewChild('selfClosingAlert', {static: false}) selfClosingAlert: NgbAlert;
+
+  private _success = new Subject<string>();
+  successMessage = '';
+
+  private _wishsuccess = new Subject<string>();
+  wishsuccess = '';
 
   constructor(private route: ActivatedRoute,public loginService:AuthenticationService,private router: Router, private bookService: BookService,public dialog: MatDialog) {
     this.currentUserSubscription = this.loginService.currentUser.subscribe(user => {
@@ -50,10 +60,21 @@ userfirstname: String;
       this.bookService.getReview(this.id).subscribe(data =>{
         console.log(data)
       this.reviews = data;
-      //total star rating
-    //   this.total = this.reviews.reduce((runningValue: number, revi: Review) => 
-    //   runningValue = runningValue + (revi.review_star)/2, 0);
-    //   console.log(this.total);
+      
+      this._success.subscribe(message => this.successMessage = message);
+      this._success.pipe(debounceTime(5000)).subscribe(() => {
+        if (this.selfClosingAlert) {
+          this.selfClosingAlert.close();
+        }
+      });
+  
+      this._wishsuccess.subscribe(message => this.wishsuccess = message);
+      this._wishsuccess.pipe(debounceTime(5000)).subscribe(() => {
+        if (this.selfClosingAlert) {
+          this.selfClosingAlert.close();
+        }
+      });
+
      }
     )
   }
@@ -75,5 +96,10 @@ userfirstname: String;
   ngAfterContentChecked()  {
     
 }
+
+
+public changeSuccessMessage() { this._success.next(`Added to Cart`); }
+
+public wishSuccessMessage() { this._wishsuccess.next(`Added to Wishlist`); }
  
 }

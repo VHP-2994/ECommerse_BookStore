@@ -11,8 +11,7 @@
 </div>
 <form (ngSubmit)="onSubmit()" class="example-form">
   <mat-form-field class="example-full-width">
-    <mat-label for="book_title">Leave a comment</mat-label>
-    <textarea matInput [(ngModel)]="review.review_comment" name="name" class="form-control"  placeholder="Ex. It makes me feel..."></textarea>
+    <textarea style="outline: none; border: none;" [(ngModel)]="review.review_comment" name="name" class="form-control"  placeholder="What did you like or dislike?"></textarea>
   </mat-form-field>
 </form>
 <div mat-dialog-actions>

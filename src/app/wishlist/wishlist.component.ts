@@ -14,6 +14,7 @@ export class WishlistComponent implements OnInit {
   books: Book[];
   wishlist : Wishlist[];
   wishcount : number;
+  wishlistItemAvilable:boolean = false;
   constructor(private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
@@ -21,8 +22,12 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.findAll().subscribe(data => {
       console.log(data);
       this.wishlist = data;
+      if(this.wishlist.length!==0){
+        this.wishlistItemAvilable = true;
+      }
       this.wishcount =this.wishlist.length;
       console.log(this.wishcount)
+      console.log(this.wishlistItemAvilable);
     })
   
   }
@@ -32,6 +37,9 @@ export class WishlistComponent implements OnInit {
       console.log(id);
       this.wishlistService.findAll().subscribe(data => {
         this.wishlist = data;
+        if(this.wishlist.length===0){
+          this.wishlistItemAvilable=false;
+        }
       }),
       error => console.log(error);
     })

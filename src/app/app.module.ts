@@ -40,6 +40,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AccountComponent } from './account/account.component';
 import { EditaccountComponent } from './editaccount/editaccount.component';
 import { HeaderComponent } from './header/header.component';
+import  {NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -98,7 +99,8 @@ const routes: Routes = [
     MatExpansionModule,
     ReactiveFormsModule,
     StarRatingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbModule
   ],
   exports:[RouterModule],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorService, multi: true }],

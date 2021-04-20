@@ -1,0 +1,10 @@
+.addremove{
+    border: none;
+    width: 30px;
+    height: 30px;
+}
+
+.del{
+    margin-right: 10px;
+    border: none;
+}

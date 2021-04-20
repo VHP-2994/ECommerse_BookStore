@@ -1,8 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Book } from '../Book';
 import { BookService} from '../book.service';
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { AddtocartComponent } from '../addtocart/addtocart.component';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-bookdetail',
@@ -15,11 +17,16 @@ export class BookdetailComponent implements OnInit {
   book : Book;
   bookswish: Book[];
   bookwish: Book;
-  msg : string ="Hello";
-  message : string ="hello child"
+  
+  
+  @ViewChild('selfClosingAlert', {static: false}) selfClosingAlert: NgbAlert;
 
-  @Output() messageEvent = new EventEmitter<string>();
-   
+  private _success = new Subject<string>();
+  successMessage = '';
+
+  private _wishsuccess = new Subject<string>();
+  wishsuccess = '';
+
   constructor(
     private bookService: BookService
   ) { }
@@ -29,8 +36,22 @@ export class BookdetailComponent implements OnInit {
     this.bookService.findAll().subscribe(data => {
       console.log(data);
       this.books = data;
-     
     })
+
+    this._success.subscribe(message => this.successMessage = message);
+    this._success.pipe(debounceTime(5000)).subscribe(() => {
+      if (this.selfClosingAlert) {
+        this.selfClosingAlert.close();
+      }
+    });
+
+    this._wishsuccess.subscribe(message => this.wishsuccess = message);
+    this._wishsuccess.pipe(debounceTime(5000)).subscribe(() => {
+      if (this.selfClosingAlert) {
+        this.selfClosingAlert.close();
+      }
+    });
+  
   }
 
   private getBooks(){
@@ -51,10 +72,12 @@ export class BookdetailComponent implements OnInit {
       error => console.log(error);
     })
   }
-  sendMessage(){
-    this.messageEvent.emit(this.message);
-    console.log(this.message);
-  }
+
+public changeSuccessMessage() { this._success.next(`Added to Cart`); }
+
+public wishSuccessMessage() { this._wishsuccess.next(`Added to Wishlist`); }
+
+
   displayedColumns: String[] = ['book_id','book_title','book_author','book_price','actions','delete'];
 
 }

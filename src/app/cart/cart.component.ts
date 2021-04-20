@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   cart : Cart[];
   subtotal: number;
   cartCount:number;
+  itemAvailable:boolean=false;
 
   constructor(private cartService: CartService) { }
 
@@ -22,8 +23,14 @@ export class CartComponent implements OnInit {
     this.cartService.findAll().subscribe(data => {
       console.log(data);
       this.cart = data;
-      this.subtotal = this.cart[this.cart.length-1].sub_total;
+      if(this.cart.length!==0){
+        this.itemAvailable = true;
+        this.subtotal = this.cart[this.cart.length-1].sub_total;
+        this.cartCount = this.cart.length;
+      }
+      console.log(this.cartCount);
       console.log(this.subtotal);
+      console.log(this.itemAvailable);
     })
   }
 
@@ -38,9 +45,15 @@ export class CartComponent implements OnInit {
       console.log(id);
       this.cartService.findAll().subscribe(data => {
         this.cart = data;
-        if(this.cart!==null){
+        if(this.cart.length!==0){
+          if(this.subtotal!==0){
         this.subtotal = this.cart[this.cart.length-1].sub_total;
       console.log(this.subtotal);
+      this.cartCount = this.cart.length;
+          }
+        }
+        if(this.cart.length===0){
+          this.itemAvailable = false;
         }
       }),
       error => console.log(error);

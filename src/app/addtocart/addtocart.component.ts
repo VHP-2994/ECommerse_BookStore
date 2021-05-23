@@ -5,6 +5,8 @@ import { BookService} from '../book.service';
 import { Cart } from '../cart';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
+import { AuthenticationService } from '../authentication.service';
+import { User } from '../User';
 
 @Component({
   selector: 'app-addtocart',
@@ -13,12 +15,22 @@ import { DataService } from '../data.service';
 })
 export class AddtocartComponent implements OnInit {
 
+  currentUserSubscription: Subscription;
+  userId:number;
+  submitted = false; 
+  currentUser: User;
   constructor(private bookService: BookService,private router: Router,
-    private cartService: CartService,private dataService: DataService) { }
+    private cartService: CartService,private dataService: DataService,public loginService:AuthenticationService) {
+      this.currentUserSubscription = this.loginService.currentUser.subscribe(user => {
+        this.currentUser = user;
+        if(user!=null){
+          this.userId = user.user_id;
+        }
+    })
+     }
 
     books: Cart[] = [];
   book : Cart;
-  submitted = false;
   bookadded = false;
   count:number;
   cart_addedmsg:String;
@@ -33,11 +45,11 @@ export class AddtocartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToCart(id,b){
+  addToCart(id,b,userId){
     b.isSelected = true;
     console.log(b.isSelected);
 
-     this.cartService.postBook(id).subscribe(data =>{
+     this.cartService.postBook(id,this.userId).subscribe(data =>{
       this.bookadded = true;
        console.log("wishlist book added");
        console.log(data);

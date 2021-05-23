@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../Book';
 import { CartService } from '../cart.service';
 import { Cart } from '../cart';
+import { NavigationExtras, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { User } from '../User';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,11 +20,24 @@ export class CartComponent implements OnInit {
   cartCount:number;
   itemAvailable:boolean=false;
 
-  constructor(private cartService: CartService) { }
+
+  currentUserSubscription: Subscription;
+  userId:number;
+  submitted = false; 
+  currentUser: User;
+
+  constructor(private cartService: CartService,private router: Router,public loginService:AuthenticationService) { 
+    this.currentUserSubscription = this.loginService.currentUser.subscribe(user => {
+      this.currentUser = user;
+      if(user!=null){
+        this.userId = user.user_id;
+      }
+  })
+  }
 
   ngOnInit(): void {
 
-    this.cartService.findAll().subscribe(data => {
+    this.cartService.findAll(this.userId).subscribe(data => {
       console.log(data);
       this.cart = data;
       if(this.cart.length!==0){
@@ -34,6 +51,19 @@ export class CartComponent implements OnInit {
     })
   }
 
+  cartnum : number[] = [];
+
+  onClickProceed(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: this.cart
+  };
+
+ for(let val of this.cart){
+   this.cartnum.push(val.cart_id);
+ }
+ console.log(this.cartnum);
+  this.router.navigate(["addresslist"], { queryParams: { product: JSON.stringify(this.cartnum) }} );
+  }
 
   receiveMessage($event){
     this.cartCount = $event;
@@ -43,7 +73,7 @@ export class CartComponent implements OnInit {
   removeFromCart(id){
     this.cartService.deleteFromCart(id).subscribe(response => {
       console.log(id);
-      this.cartService.findAll().subscribe(data => {
+      this.cartService.findAll(this.userId).subscribe(data => {
         this.cart = data;
         if(this.cart.length!==0){
           if(this.subtotal!==0){

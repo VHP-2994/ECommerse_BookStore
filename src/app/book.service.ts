@@ -4,6 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Book } from './book';
 import { Review } from './review';
 import { User } from './User';
+import { Checkout } from './Checkout';
+import { Cart } from './cart';
+import { Order } from './Order';
 
 
 @Injectable({
@@ -57,5 +60,28 @@ export class BookService {
   public postUser(user: User): Observable<Object>{
     return this.http.post(`http://localhost:8082/signup`,user);
   } 
+
+  public postCheckoutDetails(checkout: Checkout,id: number): Observable<Object>{
+    return this.http.post(`http://localhost:8082/saveaddress/${id}`,checkout);
+  } 
+
+  public findCheckoutDetailsById(id: number): Observable<Checkout[]>{
+    return this.http.get<Checkout[]>(`http://localhost:8082/checkout/${id}`);
+  }
  
+  public findAddressById(id: number): Observable<Checkout>{
+    return this.http.get<Checkout>(`http://localhost:8082/checkoutdetails/${id}`);
+  }
+
+  public findCartItemByCartID(id:number): Observable<Cart>{
+    return this.http.get<Cart>(`http://localhost:8082/cartId/${id}`);
+  }
+
+  public findOrderByOrderId(id: number): Observable<Order>{
+    return this.http.get<Order>(`http://localhost:8082/orderCancel/${id}`);
+  }
+
+  public updateOrderStatusByOrderId(id: number,order: Order): Observable<Order>{
+    return this.http.put<Order>(`http://localhost:8082/canelOrder/${id}`,order)
+  }
 }

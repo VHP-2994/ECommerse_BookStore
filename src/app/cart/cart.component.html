@@ -7,8 +7,9 @@
 
 <div *ngIf="itemAvailable">
   <h3 style="display: inline;margin-left: 20px;"><strong>Item Count {{cartCount}}</strong></h3>
-  <h3 *ngIf="itemAvailable" style="display: inline;margin-left: 80%;"><strong>Total : {{subtotal}}</strong></h3>
-<mat-card class="example-card" *ngFor="let c of cart" style="margin-left: 25px;margin-right: 25px;margin-bottom: 15px;">
+  <h3 *ngIf="itemAvailable" style="display: inline;margin-left: 70%;"><strong>Total : {{subtotal}}</strong></h3>
+  <button mat-raised-button reviewbutton style="display: inline;margin-left: 0.5%;background-color: #ffd700;" (click)="onClickProceed()"><strong>Proceed to Checkout</strong></button>
+<mat-card class="example-card" *ngFor="let c of cart" style="margin-left: 25px;margin-right: 25px;margin-bottom: 15px;margin-top: 10px;">
     <mat-card-header>
       <mat-card-title> <img src="data:image/png;base64,{{c.cart_bookimage}}" class="img-responsive" height="150px"
         width="200px" alt="Image"> </mat-card-title> 
@@ -23,7 +24,7 @@
     <mat-card-actions>
       <!-- <button class="material-icons" (click)="removeFromCart(c.cart_id)">
         delete_outline</button> -->
-        <button class="del" (click)="removeFromCart(c.cart_id)">
+        <button class="del" (click)="removeFromCart(c.cart_id,userId)">
         <span class="material-icons">
           delete
           </span></button>

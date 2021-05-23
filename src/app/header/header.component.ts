@@ -37,6 +37,7 @@ userfirstname: String;
   bookswish: Book[];
   bookwish: Book;
   msg : string ="Hello";
+  userId: number;
  badgeCount:number;
   constructor(private bookService: BookService,public loginService:AuthenticationService
     ,public dialog: MatDialog,private dataService: DataService,public cartService: CartService) {
@@ -45,6 +46,7 @@ userfirstname: String;
       this.currentUser = user;
       if(user!=null){
         this.userfirstname = user.firstName;
+        this.userId = user.user_id;
       }
       else{
         this.userfirstname = 'SignIn'
@@ -58,7 +60,7 @@ userfirstname: String;
       this.books = data;
       console.log(this.books);
     });
-    this.cartService.findAll().subscribe(data => {
+    this.cartService.findAll(this.userId).subscribe(data => {
       console.log(data);
       this.cartArray = data;
       console.log(this.cartArray);

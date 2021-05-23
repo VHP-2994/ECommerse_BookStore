@@ -1,0 +1,46 @@
+<mat-card class="example-card" style="text-align: center;">
+	<mat-card-title>
+		Checkout Information
+	</mat-card-title>
+
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input [(ngModel)]="checkout.firstName" type="name" name="name" class="form-control" id="name">
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input [(ngModel)]="checkout.lastName" type="name" name="name" class="form-control" id="name">
+          </div>
+          <br>
+      <div class="form-group">
+        <label for="emailid">Email</label>
+        <input [(ngModel)]="checkout.emailid" type="name" name="name" class="form-control" id="name">
+      </div>
+      <br>    
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input [(ngModel)]="checkout.address" name="Employee Id" class="form-control" id="employeeid">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="pincode">Pincode</label>
+        <input [(ngModel)]="checkout.pincode" name="Employee Id" class="form-control" id="employeeid">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input [(ngModel)]="checkout.city" name="Employee Id" class="form-control" id="employeeid">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input [(ngModel)]="checkout.state" name="Employee Id" class="form-control" id="employeeid">
+      </div>
+      <br>
+    
+      <button type="submit" class="btn btn-success">Add Address</button>
+      <button mat-raised-button reviewbutton style="display: inline;" (click)="backtoAddress()"><strong>Back</strong></button>
+    </form>

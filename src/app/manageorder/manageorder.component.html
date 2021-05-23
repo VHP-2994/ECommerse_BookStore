@@ -1,0 +1,28 @@
+<div *ngIf="orderItemAvilable">
+<h3><strong>Your Orders</strong></h3>
+<hr>
+<mat-card  *ngFor="let o of order"> 
+    <mat-card-content>
+        <!-- <h3 style="display: inline;margin-left: 10px;">Order date           {{o.createdDate | date:'mediumDate'}}</h3>
+        <h3><strong style="display: inline;margin-left: 50px;">{{o.orderbook_status}}</strong></h3><br> -->
+        <h3 style="display: inline;margin-left: 10px;">Order date : {{o.createdDate | date:'mediumDate'}}</h3>
+       <h3 style="display: inline;margin-left: 60%;"><strong>Order status <h3 style="display: inline;margin-left: 1%;color: darkgreen;"><strong>{{o.orderbook_status}}</strong></h3></strong></h3><br>
+        <p style="margin-left: 10px;font-size:17px;">Order# : {{o.order_id}}</p>
+        <!-- <p style="margin-left: 10px;font-size:17px;">Order total : {{o.order_totalprice}}</p> -->
+        <hr>
+        <img src="data:image/png;base64,{{o.order_bookimage}}" class="img-responsive" height="150px" width="150px" alt="Image" style="margin-left: 10px;"><br>
+    <p style="margin-left: 10px;font-size:17px;">{{o.order_bookname}} - {{o.order_author}}</p>
+    <p style="margin-left: 10px;font-size:17px;">{{o.order_price}}</p>
+      <button mat-raised-button reviewbutton style="display: inline;margin-left: 10px;background-color: #ffd700;margin-left: 20px; margin-top: 20px;" *ngIf = "o.orderbook_status !== &quot;cancelled&quot;" [routerLink]="['/orderCancel',o.id]" routerLinkActive="active"><strong>Cancel Order</strong></button>
+      <button mat-raised-button reviewbutton style="display: inline;margin-left: 10px;background-color: #ffd700;margin-left: 20px; margin-top: 20px;" *ngIf = "o.orderbook_status === &quot;cancelled&quot;" disabled><strong>Cancelled</strong></button>
+    </mat-card-content>
+</mat-card>
+</div>
+<div *ngIf="!orderItemAvilable">
+  <div style="margin-left: 20px;margin-right: 20px;margin-top: 20px;">
+    <mat-card style="margin-top: 20px;margin-bottom: 20px;text-align: center;">
+      <h3><b>No Orders Yet!!</b></h3>
+      <button mat-stroked-button color="warn" [routerLink]="['/bookDetails']" routerLinkActive="active"><b>Add your favourite</b></button>
+    </mat-card>
+  </div>
+  </div>

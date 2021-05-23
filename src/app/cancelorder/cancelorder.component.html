@@ -1,0 +1,16 @@
+<h3><strong>Your Orders</strong></h3>
+<hr>
+<mat-card> 
+    <mat-card-content>
+        <h3 style="display: inline;margin-left: 10px;">Order date : {{order?.createdDate | date:'mediumDate'}}</h3>
+        <p style="margin-left: 10px;font-size:17px;">Order# : {{order?.order_id}}</p>
+        <hr>
+        <!-- Order total          {{order?.order_totalprice}}<br> -->
+        <img src="data:image/png;base64,{{order.order_bookimage}}" class="img-responsive" height="150px" width="150px" alt="Image"><br>
+     {{order?.order_bookname}}<br>
+      <strong>{{order?.order_author}}</strong><br>
+      <strong>{{order?.order_price}}</strong>
+      <strong>{{order?.orderbook_status}}</strong>
+      <button mat-raised-button style="display: inline;margin-left: 0.5%;background-color: #ffd700;margin-left: 20px; margin-top: 20px;"(click)="updateOrderStatus();changeSuccessMessage()"><strong>Cancel Order</strong></button>
+    </mat-card-content>
+</mat-card>

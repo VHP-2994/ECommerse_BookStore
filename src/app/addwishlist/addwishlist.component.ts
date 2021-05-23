@@ -3,6 +3,9 @@ import { Book } from '../Book';
 import { BookService} from '../book.service';
 import { Router } from '@angular/router';
 import { WishlistService } from '../wishlist.service';
+import { Subscription } from 'rxjs';
+import { User } from '../User';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-addwishlist',
@@ -19,11 +22,22 @@ export class AddwishlistComponent implements OnInit {
   
   badgeCount: number;
 
+  currentUserSubscription: Subscription;
+  userId:number;
+  currentUser: User;
+
   public icon ='favorite_border';
   
   constructor(private bookService: BookService,private router: Router,
-    private wishlistService: WishlistService) { 
+    private wishlistService: WishlistService,public loginService:AuthenticationService) { 
       this.badgeCount = 5;
+
+      this.currentUserSubscription = this.loginService.currentUser.subscribe(user => {
+        this.currentUser = user;
+        if(user!=null){
+          this.userId = user.user_id;
+        }
+    })
     }
 
   ngOnInit(): void {
@@ -47,7 +61,7 @@ export class AddwishlistComponent implements OnInit {
     this.bookService.findAll();
   }*/
 
-  addtoWishList(id,b){
+  addtoWishList(id,b,userId){
     b.isSelected = true;
     console.log(b.isSelected);
 
@@ -57,7 +71,7 @@ export class AddwishlistComponent implements OnInit {
     else{
       this.icon = 'favorite_border';
     }
-     this.wishlistService.postBook(id).subscribe(data =>{
+     this.wishlistService.postBook(id,userId).subscribe(data =>{
        this.count = this.count+1;
        console.log("wishlist book added");
        console.log(data);

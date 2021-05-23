@@ -1,10 +1,14 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Book } from '../Book';
 import { BookService} from '../book.service';
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, Subscription } from "rxjs";
 import { AddtocartComponent } from '../addtocart/addtocart.component';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
 import { debounceTime } from 'rxjs/operators';
+import { CartService } from '../cart.service';
+import { DataService } from '../data.service';
+import { AuthenticationService } from '../authentication.service';
+import { User } from '../User';
 
 @Component({
   selector: 'app-bookdetail',
@@ -27,9 +31,20 @@ export class BookdetailComponent implements OnInit {
   private _wishsuccess = new Subject<string>();
   wishsuccess = '';
 
-  constructor(
-    private bookService: BookService
-  ) { }
+  currentUserSubscription: Subscription;
+  userId:number;
+  submitted = false; 
+  currentUser: User;
+  
+  constructor(private bookService: BookService,
+    private cartService: CartService,private dataService: DataService,public loginService:AuthenticationService) {
+      this.currentUserSubscription = this.loginService.currentUser.subscribe(user => {
+        this.currentUser = user;
+        if(user!=null){
+          this.userId = user.user_id;
+        }
+    })
+  }
 
   
   ngOnInit() {

@@ -41,6 +41,14 @@ import { AccountComponent } from './account/account.component';
 import { EditaccountComponent } from './editaccount/editaccount.component';
 import { HeaderComponent } from './header/header.component';
 import  {NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CheckoutdetailsComponent } from './checkoutdetails/checkoutdetails.component';
+import { PaymentdetailsComponent } from './paymentdetails/paymentdetails.component';
+import { AddresslistComponent } from './addresslist/addresslist.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { OrderconfirmComponent } from './orderconfirm/orderconfirm.component';
+import { ManageorderComponent } from './manageorder/manageorder.component';
+import { MyordersComponent } from './myorders/myorders.component';
+import { CancelorderComponent } from './cancelorder/cancelorder.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -54,7 +62,14 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component:LogoutComponent},
   {path: 'account', component: AccountComponent},
-  {path: 'edit-account/:id', component: EditaccountComponent}
+  {path: 'edit-account/:id', component: EditaccountComponent},
+  {path: 'checkout', component: CheckoutdetailsComponent},
+  {path: 'addresslist', component: AddresslistComponent},
+  {path: 'addresslist/payment', component: PaymentdetailsComponent},
+  {path: 'addresslist/payment/order', component: OrderconfirmComponent},
+  {path: 'addresslist/payment/order/myorders', component: ManageorderComponent},
+  {path: 'myOrders', component: ManageorderComponent},
+  {path: 'orderCancel/:id', component: CancelorderComponent}
 ];
 
 @NgModule({
@@ -75,7 +90,14 @@ const routes: Routes = [
     HomeComponent,
     AccountComponent,
     EditaccountComponent,
-    HeaderComponent
+    HeaderComponent,
+    CheckoutdetailsComponent,
+    PaymentdetailsComponent,
+    AddresslistComponent,
+    OrderconfirmComponent,
+    ManageorderComponent,
+    MyordersComponent,
+    CancelorderComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +112,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatDialogModule,
     MatListModule,
+    MatRadioModule,
     MatDividerModule,
     RouterModule,
     MatFormFieldModule,

@@ -1,0 +1,35 @@
+<mat-card>selected Products
+	<mat-card-content *ngFor="let p of productArray">
+		<img src="data:image/png;base64,{{p.cart_bookimage}}" class="img-responsive" height="100px" width="100px" alt="Image"><br>
+	  <strong>{{p?.cart_bookname}},{{p.cart_bookauthor}}</strong><br>
+	  <strong>{{p?.cart_bookprice}}</strong>
+  
+  </mat-card-content>
+  </mat-card>
+
+<mat-card>deliver to
+  <mat-card-content>
+    <strong>{{checkout?.firstName}} {{checkout?.lastName}}</strong><br>
+    <strong>{{checkout?.address}},{{checkout?.pincode}}</strong><br>
+    <strong>{{checkout?.city}},{{checkout?.state}}</strong><br>
+    <strong>{{checkout?.emailid}}</strong>
+
+</mat-card-content>
+</mat-card>
+
+<h3 id="example-radio-group-label" style="margin-left: 20px;margin-top: 20px;">Select Payment option</h3>
+<mat-radio-group class="asCard"
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group" style="margin-left: 20px;" [(ngModel)]="paymentoption">
+  <mat-radio-button class="example-radio-button" value="Pay on delivery">
+    <mat-card style="width: 400px;">
+		<mat-card-content>
+			<strong>Pay on delivery</strong>
+</mat-card-content>
+	</mat-card>
+  </mat-radio-button>
+</mat-radio-group>
+<br>
+<button mat-raised-button reviewbutton style="display: inline;margin-left: 0.5%;background-color: #ffd700;margin-left: 20px; margin-top: 20px;" (click)="moveToOrder()"><strong>Confirm Order</strong></button>
+<button mat-raised-button reviewbutton style="display: inline;margin-left: 0.5%;margin-left: 40px; margin-top: 20px; width: 100px;" (click)="backtoAddress()"><strong>Back</strong></button>
+<div>Your payment option is: {{paymentoption}}</div>

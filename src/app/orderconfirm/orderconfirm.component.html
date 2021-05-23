@@ -1,0 +1,20 @@
+<h2><strong>Thank You for your Purchase</strong></h2>
+<mat-card><h2>Order summary</h2>
+    <hr/>
+	<mat-card-content *ngFor="let p of productArray">
+		<img src="data:image/png;base64,{{p.cart_bookimage}}" class="img-responsive" height="150px" width="150px" alt="Image"><br>
+	  <strong>{{p?.cart_bookname}},{{p.cart_bookauthor}}</strong><br>
+    <strong>{{p?.cart_bookprice}}</strong><br>
+    <!-- <strong>Total : {{p?.sub_total}}</strong><br> -->
+  Your order will be sent to:<br>
+  <hr/>
+  <strong>{{checkout?.firstName}} {{checkout?.lastName}}</strong><br>
+    <strong>{{checkout?.address}},{{checkout?.pincode}}</strong><br>
+    <strong>{{checkout?.city}},{{checkout?.state}}</strong><br>
+    <strong>{{checkout?.emailid}}</strong><br><br>
+    Payment Mode:<br>
+    <hr/>
+    <strong>{{paymentMode}}</strong><br>
+    <button mat-raised-button style="display: inline;margin-left: 0.5%;background-color: #ffd700;margin-left: 20px; margin-top: 20px;" [routerLink]="['/myOrders']" routerLinkActive="active"><strong>View or Manage Order</strong></button>
+  </mat-card-content>
+  </mat-card>

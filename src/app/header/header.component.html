@@ -15,6 +15,10 @@
      Add Book
     </button></mat-list-item>
     <mat-divider></mat-divider>
+    <mat-list-item><button mat-icon-button class="side-label"  aria-label="Example icon-button with menu icon" routerLink="/myOrders" routerLinkActive="active">
+      Your Orders
+     </button></mat-list-item>
+     <mat-divider></mat-divider>
     <mat-list-item><button mat-icon-button class="side-label" [routerLink]="['/wishlist']" routerLinkActive="active">Wishlist</button></mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item><button mat-icon-button class="side-label" [routerLink]="['/cart']" routerLinkActive="active">My Cart</button></mat-list-item>
@@ -47,6 +51,8 @@
             <mat-divider></mat-divider>
             <!-- <button mat-menu-item >Read For Free</button>
             <mat-divider></mat-divider> -->
+            <button mat-menu-item [routerLink]="['/myOrders']" routerLinkActive="active">My Orders</button>
+            <mat-divider></mat-divider>
             <button mat-menu-item  *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" >Logout</button>
             
           </mat-menu>

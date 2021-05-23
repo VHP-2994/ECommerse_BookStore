@@ -12,7 +12,7 @@
     <!-- <button class="mdc-icon-button material-icons" style.color="b.isSelected ? '#3DA2DA' : 'FFFFFF'" (click)="addwishlist.addtoWishList(b.book_id,b)"><span>
       grade</span></button> -->
 
-      <button class="mdc-icon-button material-icons" (click)="addwishlist.addtoWishList(b.book_id,b);wishSuccessMessage()"><span class="material-icons">
+      <button class="mdc-icon-button material-icons" (click)="addwishlist.addtoWishList(b.book_id,b,userId);wishSuccessMessage()"><span class="material-icons">
         bookmark_border
         </span></button>
       <app-addwishlist #addwishlist></app-addwishlist>
@@ -21,7 +21,7 @@
     <button class="material-icons" [routerLink]="['/updateDetails',b.book_id]" routerLinkActive="active">
         edit
     </button>
-    <button mat-button (click)="addtocart.addToCart(b.book_id,b);changeSuccessMessage()">Add To Cart</button>
+    <button mat-button (click)="addtocart.addToCart(b.book_id,b,userId);changeSuccessMessage()">Add To Cart</button>
     <app-addtocart #addtocart></app-addtocart>
   </mat-card-actions>
 </mat-card>

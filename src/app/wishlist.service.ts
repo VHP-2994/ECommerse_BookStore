@@ -11,13 +11,13 @@ export class WishlistService {
 
   constructor(private http: HttpClient) { }
 
-  public postBook(bookid: Number): Observable<Object>{
-    return this.http.post(`http://localhost:8082/addToWishlist/${bookid}`,null);
+  public postBook(bookid: Number,id: Number): Observable<Object>{
+    return this.http.post(`http://localhost:8082/addToWishlist/${bookid}/${id}`,null);
   }
 
-  public findAll(): Observable<Wishlist[]> {
+  public findAll(id: Number): Observable<Wishlist[]> {
     console.log("test call");
-    return this.http.get<Wishlist[]>('http://localhost:8082/wishlist');
+    return this.http.get<Wishlist[]>(`http://localhost:8082/wishlist/${id}`);
     //return this.http.get<Book[]>(this.bookUrl);
   }
 

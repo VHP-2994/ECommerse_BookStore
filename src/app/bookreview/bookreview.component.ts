@@ -35,12 +35,15 @@ userfirstname: String;
   private _wishsuccess = new Subject<string>();
   wishsuccess = '';
 
+  userId:number;
+
   constructor(private route: ActivatedRoute,public loginService:AuthenticationService,private router: Router, private bookService: BookService,public dialog: MatDialog) {
     this.currentUserSubscription = this.loginService.currentUser.subscribe(user => {
       this.currentUser = user;
       console.log(this.currentUser);
       if(user!=null){
         this.userfirstname = user.firstName;
+        this.userId = user.user_id;
       }
   });
    }
